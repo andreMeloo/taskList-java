@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             template="template.xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui">
+    <section id="section-content">
+        <header>
+            <section id="header-div">
+                <h:outputText value="Listagem de Tarefas"></h:outputText>
+            </section>
+        </header>
+        <div id="contents">
+            <section id="section-form">
+                <h:form id="list-form">
+                    <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+                    <h:outputLabel styleClass="label-input" for="input-number" value="Número:"></h:outputLabel>
+                    <h:inputText id="input-number" maxlength="2" value="#{pageListTaskBean.newTask.number}"></h:inputText>
+
+                    <h:outputLabel styleClass="label-input" for="input-title" value="Título:"></h:outputLabel>
+                    <h:inputText id="input-title" maxlength="50" value="#{pageListTaskBean.newTask.title}"></h:inputText>
+
+                    <div id="bottom-form">
+                        <h:outputLabel styleClass="label-input" for="input-responsible" value="Responsável:"></h:outputLabel>
+                        <h:inputText id="input-responsible" maxlength="30" value="#{pageListTaskBean.newTask.responsible}"></h:inputText>
+
+                        <h:outputLabel styleClass="label-input" for="input-situation" value="Situação:"></h:outputLabel>
+                        <h:selectOneMenu id="input-situation" value="#{pageListTaskBean.newTask.situation}">
+                            <f:selectItem itemValue="complete" itemLabel="Concluída"></f:selectItem>
+                            <f:selectItem itemValue="incomplete" itemLabel="Em Andamento"></f:selectItem>
+                        </h:selectOneMenu>
+                        <h:commandButton id="find-tasks-button" value="Buscar Tarefas">
+                            <f:ajax listener="#{pageListTaskBean.findTasks()}" execute="@all" render="@all" event="click"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </section>
+            <section id="section-view-tasks">
+                <h:dataTable var="task" value="#{pageListTaskBean.listTasks}" 
+                             styleClass="task-table"
+                             headerClass="task-table-header"
+                             rowClasses="task-table-oddRow, task-table-evenRow">
+                    <h:column>    				
+                        <f:facet name="header">Número</f:facet>    				
+                        <h:outputText value="#{task.number}"></h:outputText>
+                    </h:column>
+                    <h:column>    				
+                        <f:facet name="header">Título</f:facet>    				
+                        <h:outputText value="#{task.title}"></h:outputText>
+                    </h:column>
+                    <h:column>    				
+                        <f:facet name="header">Responsável</f:facet>    				
+                        <h:outputText value="#{task.responsible}"></h:outputText>
+                    </h:column>
+                    <h:column>    				
+                        <f:facet name="header">Ações</f:facet>    				
+                        <h:outputText value="#{task.situation}" rendered="#{task.situation == 'complete'}"></h:outputText>
+                        <div rendered="#{task.situation == 'incomplete'}">
+                            <h:link value="Editar"></h:link>
+                            |
+                            <h:link value="Excluir"></h:link>
+                            |
+                            <h:link value="Concluir"></h:link>
+                        </div>
+                    </h:column>
+                </h:dataTable>
+            </section>
+        </div>
+    </section>
+</ui:decorate>
+
