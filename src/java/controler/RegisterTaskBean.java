@@ -1,13 +1,11 @@
 package controler;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import model.bo.TasksBO;
 import model.vo.TasksVO;
 
 
 @ManagedBean
-@SessionScoped
 public class RegisterTaskBean {
     
     private TasksVO taskVO = new TasksVO();

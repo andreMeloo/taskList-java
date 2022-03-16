@@ -19,7 +19,15 @@ public class TasksBO {
         }
     }
 
-    public void deleteTask() {
+    public void deleteTask(Integer number) {
+        TasksDAO taskDAO = new TasksDAO();
+        TasksVO taskVO = new TasksVO();
+        try {
+            taskVO = taskDAO.getByNumber(number);
+            taskDAO.delete(taskVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -59,8 +67,13 @@ public class TasksBO {
         }
     }
 
-    public void updateTask() {
-
+    public void updateTask(TasksVO taskVO) {
+        try {
+            TasksDAO taskDAO = new TasksDAO();
+            taskDAO.update(taskVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Integer generateNumberTask() {

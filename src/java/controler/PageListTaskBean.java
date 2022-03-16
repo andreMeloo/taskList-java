@@ -3,11 +3,12 @@ package controler;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import model.bo.TasksBO;
 import model.vo.TasksVO;
 
 @ManagedBean
+@ViewScoped
 public class PageListTaskBean {
 
     private TasksVO newTask = new TasksVO();
@@ -17,10 +18,9 @@ public class PageListTaskBean {
         TasksBO taskBO = new TasksBO();
 
         listTasks = taskBO.listAllTask(newTask);
-
         newTask = new TasksVO();
     }
-
+    
     public TasksVO getNewTask() {
         return newTask;
     }
