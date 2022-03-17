@@ -60,3 +60,21 @@ main {
 .label-priority {
     margin-left: 50px;
 }
+
+/* list tasks  */
+
+.content-list {
+    flex-direction: column;
+    gap: 15px;
+}
+
+#list-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#bottom-form {
+    display: flex;
+    gap: 5px;
+}

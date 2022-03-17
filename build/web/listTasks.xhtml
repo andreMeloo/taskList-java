@@ -12,15 +12,19 @@
                 <h:outputText value="Listagem de Tarefas"></h:outputText>
             </section>
         </header>
-        <div id="contents">
+        <div id="contents" class="content-list">
             <section id="section-form">
                 <h:form id="list-form">
-                    <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
-                    <h:outputLabel styleClass="label-input" for="input-number" value="Número:"></h:outputLabel>
-                    <h:inputText id="input-number" maxlength="2" value="#{pageListTaskBean.newTask.number}"></h:inputText>
+                    <div>
+                        <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+                        <h:outputLabel styleClass="label-input" for="input-number" value="Número:"></h:outputLabel>
+                        <h:inputText id="input-number" maxlength="2" value="#{pageListTaskBean.newTask.number}"></h:inputText>
+                    </div>
+                    <div style="display: flex;">
+                        <h:outputLabel styleClass="label-input" for="input-title" value="Título:"></h:outputLabel>
+                        <h:inputText style="width: 100%;" id="input-title" maxlength="50" value="#{pageListTaskBean.newTask.title}"></h:inputText>
+                    </div>
 
-                    <h:outputLabel styleClass="label-input" for="input-title" value="Título:"></h:outputLabel>
-                    <h:inputText id="input-title" maxlength="50" value="#{pageListTaskBean.newTask.title}"></h:inputText>
 
                     <div id="bottom-form">
                         <h:outputLabel styleClass="label-input" for="input-responsible" value="Responsável:"></h:outputLabel>
@@ -41,6 +45,7 @@
                 <h:form id="form-dataTable">
                     <h:dataTable id="dataTable-tasks" var="task" value="#{pageListTaskBean.listTasks}"
                                  headerClass="task-table-header"
+                                 columnClasses="tableColluns"
                                  rowClasses="task-table-oddRow, task-table-evenRow"
                                  binding="#{dataTableBean.dataTableTasks}">
                         <h:column>    				
