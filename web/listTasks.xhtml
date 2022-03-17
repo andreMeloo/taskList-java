@@ -44,6 +44,7 @@
             <section id="section-view-tasks">
                 <h:form id="form-dataTable">
                     <h:dataTable id="dataTable-tasks" var="task" value="#{pageListTaskBean.listTasks}"
+                                 border="1"
                                  headerClass="task-table-header"
                                  columnClasses="tableColluns"
                                  rowClasses="task-table-oddRow, task-table-evenRow"
@@ -62,7 +63,7 @@
                         </h:column>
                         <h:column>    				
                             <f:facet name="header">Ações</f:facet>
-                            <h:outputText value="#{task.situation}" rendered="#{task.situation == 'complete'}"></h:outputText>
+                            <h:outputText value="Concluída" rendered="#{task.situation == 'complete'}"></h:outputText>
                             <h:panelGroup rendered="#{task.situation == 'incomplete'}">
                                 <p:commandButton id="button-delete" value="Excluir" action="#{dataTableBean.removeTask()}"></p:commandButton>
                                 <p:commandButton id="button-conclude" value="Concluir" action="#{dataTableBean.concludeTask()}"></p:commandButton> 

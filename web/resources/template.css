@@ -27,7 +27,6 @@ main {
 #section-content {
     border: 2px solid rgb(33,175,243);
     border-top: none;
-    height: 100%;
     width: 100%;
     border-radius: 10px;
 }
@@ -37,12 +36,14 @@ main {
     font-weight: 600;
     background-color: rgba(33,175,243, .3);
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 #contents {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .label-input {
@@ -65,6 +66,7 @@ main {
 
 .content-list {
     flex-direction: column;
+    margin-bottom: 15px;
     gap: 15px;
 }
 
