@@ -45,28 +45,33 @@
                 <h:form id="form-dataTable">
                     <h:dataTable id="dataTable-tasks" var="task" value="#{pageListTaskBean.listTasks}"
                                  border="1"
+                                 cellspacing="3"
                                  headerClass="task-table-header"
                                  columnClasses="tableColluns"
                                  rowClasses="task-table-oddRow, task-table-evenRow"
                                  binding="#{dataTableBean.dataTableTasks}">
                         <h:column>    				
                             <f:facet name="header">Número</f:facet>    				
-                            <h:outputText id="camp-number" value="#{task.number}"></h:outputText>
+                            <h:outputText style="padding: 15px" id="camp-number" value="#{task.number}"></h:outputText>
                         </h:column>
                         <h:column>    				
                             <f:facet name="header">Título</f:facet>    				
-                            <h:outputText id="camp-title" value="#{task.title}"></h:outputText>
+                            <h:outputText style="padding: 15px" id="camp-title" value="#{task.title}"></h:outputText>
                         </h:column>
                         <h:column>    				
                             <f:facet name="header">Responsável</f:facet>    				
-                            <h:outputText id="camp-responsible" value="#{task.responsible}"></h:outputText>
+                            <h:outputText style="padding: 15px" id="camp-responsible" value="#{task.responsible}"></h:outputText>
                         </h:column>
                         <h:column>    				
                             <f:facet name="header">Ações</f:facet>
-                            <h:outputText value="Concluída" rendered="#{task.situation == 'complete'}"></h:outputText>
-                            <h:panelGroup rendered="#{task.situation == 'incomplete'}">
-                                <p:commandButton id="button-delete" value="Excluir" action="#{dataTableBean.removeTask()}"></p:commandButton>
-                                <p:commandButton id="button-conclude" value="Concluir" action="#{dataTableBean.concludeTask()}"></p:commandButton> 
+                            <h:outputText style="padding: 15px" value="Concluída" rendered="#{task.situation == 'complete'}"></h:outputText>
+                            <h:panelGroup style="padding: 15px" rendered="#{task.situation == 'incomplete'}">
+                                <p:commandButton id="button-delete" value="Excluir">
+                                    <f:ajax listener="#{dataTableBean.removeTask()}" execute="form-dataTable"  render="@all" event="click"></f:ajax>
+                                </p:commandButton>
+                                <p:commandButton id="button-conclude" value="Concluir">
+                                    <f:ajax listener="#{dataTableBean.concludeTask()}" execute="form-dataTable"  render="@all" event="click"></f:ajax>
+                                </p:commandButton> 
                             </h:panelGroup>   
                         </h:column>
                     </h:dataTable>
