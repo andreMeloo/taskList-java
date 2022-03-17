@@ -14,9 +14,10 @@
         <div id="contents">
             <h:form id="register-form">
                 <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
-
-                <h:outputLabel styleClass="label-input" for="input-title" value="Título:"></h:outputLabel>
-                <h:inputText id="input-title" maxlength="50" value="#{registerTaskBean.taskVO.title}"></h:inputText>
+                <div id="div-title">
+                    <h:outputLabel styleClass="label-input" for="input-title" value="Título:"></h:outputLabel>
+                    <h:inputText id="input-title" maxlength="50" value="#{registerTaskBean.taskVO.title}"></h:inputText>
+                </div>
                 <div id="box-description">
                     <h:outputLabel styleClass="label-input" for="input-description" value="Descrição:"></h:outputLabel>
                     <h:inputTextarea id="input-description" cols="70" rows="10" value="#{registerTaskBean.taskVO.description}"></h:inputTextarea>
@@ -25,17 +26,19 @@
                     <h:outputLabel styleClass="label-input" for="input-responsible" value="Responsável:"></h:outputLabel>
                     <h:inputText id="input-responsible" maxlength="30" value="#{registerTaskBean.taskVO.responsible}"></h:inputText>
 
-                    <h:outputLabel styleClass="label-input" for="input-priority" value="Prioridade:"></h:outputLabel>
+                    <h:outputLabel styleClass="label-input label-priority" for="input-priority" value="Prioridade:"></h:outputLabel>
                     <h:selectOneMenu id="input-priority" value="#{registerTaskBean.taskVO.priority}">
                         <f:selectItem itemValue="BAIXA" itemLabel="Baixa"></f:selectItem>
                         <f:selectItem itemValue="MEDIA" itemLabel="Média"></f:selectItem>
                         <f:selectItem itemValue="ALTA" itemLabel="Alta"></f:selectItem>
                     </h:selectOneMenu>
                 </div>
-                <h:outputLabel styleClass="label-input" for="input-deadline" value="Deadline"></h:outputLabel>
-                <h:inputText id="input-deadline" value="#{registerTaskBean.taskVO.deadline}">
-                    <f:convertDateTime type="localDate" dateStyle="short" pattern="dd/MM/yyyy"></f:convertDateTime>
-                </h:inputText>
+                <div id="div-deadline">
+                    <h:outputLabel styleClass="label-input" for="input-deadline" value="Deadline"></h:outputLabel>
+                    <h:inputText id="input-deadline" value="#{registerTaskBean.taskVO.deadline}">
+                        <f:convertDateTime type="localDate" dateStyle="short" pattern="dd/MM/yyyy"></f:convertDateTime>
+                    </h:inputText>
+                </div>
                 <h:commandButton id="register-button" value="Cadastrar Tarefa">
                     <f:ajax listener="#{registerTaskBean.registerTask()}" execute="@all" render="@all" event="click"/>
                 </h:commandButton>
